@@ -1,0 +1,95 @@
+<div  ng-controller="fuelstation" id="fuelstation" class="fuelstation" ng-style="{'width': '100%', 'height': '100%'}" ng-init="init()">
+	<style id="applicationStylesheet" type="text/css">
+		.Background {
+		position: absolute;
+		overflow: visible;
+		width: 470px;
+		height: 309px;
+		left: 0px;
+		top: 0px;
+	}
+	#Gallon {
+		position: absolute;
+		left: 38px;
+		top: 46px;
+		overflow: visible;
+		width: 143px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 50px;
+		color: rgba(255,255,255,1);
+	}
+	#Price {
+		position: absolute;
+		left: 38px;
+		top: 140px;
+		overflow: visible;
+		width: 108px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 50px;
+		color: rgba(255,255,255,1);
+	}
+	#Fuel_served_at_5_degrees {
+		position: absolute;
+		left: 145px;
+		top: 227px;
+		overflow: visible;
+		width: 151px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		color: rgba(255,255,255,1);
+	}
+	#AddFuel {
+		position: absolute;
+		right: -40px;
+		bottom: 130px;
+		overflow: visible;
+		width: 151px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		color: rgba(255,255,255,1);
+	}
+	input.fuelStationNumberValue {
+    width: 250px;
+    right: -270px;
+    position: absolute;
+	}
+	button {
+    font-size: 30px;
+	}
+	</style>
+  <svg class="Background">
+		<rect fill="rgba(113,113,113,1)" stroke="rgba(255,255,255,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Background" rx="26" ry="26" x="0" y="0" width="470" height="309">
+		</rect>
+	</svg>
+	<div id="Gallon">
+		<span id="GasNote">Gallon</span>
+		<span id="EVNote">p/Kw</span>
+		<input type="number" name="" value="2.73" class="fuelStationNumberValue" disabled>
+	</div>
+	<div id="Price">
+		<span>Price</span>
+		<input type="number" name="" value="0.0" class="fuelStationNumberValue" style="right: -305px;" disabled id="FuelValueIncreasedBy">
+	</div>
+	<div id="Fuel_served_at_5_degrees">
+		<span id="FuelNote">Fuel served at 5 degrees</span>
+	</div>
+	<div id="AddFuel">
+		<button id="ActionButton" type="button" ng-mousedown='addFuel()' ng-mouseup="stopAddFuel()">Fuel</button>
+	</div>
+</div>

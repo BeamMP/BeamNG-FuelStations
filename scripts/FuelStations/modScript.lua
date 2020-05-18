@@ -1,0 +1,2 @@
+load("fuelStations")
+registerCoreModule("fuelStations")

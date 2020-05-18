@@ -1,0 +1,14 @@
+{
+  "name": "Fuel Station UI",
+  "author": "Titch2000",
+  "version": "0.2",
+  "description": "Fuel Station UI",
+  "directive": "fuelstation",
+  "domElement": "<fuelstation></fuelstation>",
+  "css": {
+  	"left": "180px",
+  	"bottom": "0px",
+  	"width": "471px",
+    "height": "309px"
+  }
+}
