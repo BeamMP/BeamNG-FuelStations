@@ -2,6 +2,7 @@ local M = {}
 print("Fuel Stations Initialising...")
 
 local map = ""
+local fuelType = ""
 local debug = false
 local cVeh = 0
 
@@ -57,13 +58,21 @@ end
 local function onVehicleSwitched(oldID, newID)
 	print("[Fuel Stations] Active Vehicle Switched : "..oldID.." - "..newID)
 	cVeh = newID
+  local veh = be:getObjectByID(newID)
+  veh:queueLuaCommand("fuelStation.getFuelType()")
 end
 
 local function onVehicleSpawned(gameVehicleID)
 	--print("[BeamMP] Vehicle spawned : "..gameVehicleID)
 	local veh = be:getObjectByID(gameVehicleID)
+  cVeh = gameVehicleID
   veh:queueLuaCommand("extensions.addModulePath('lua/vehicle/extensions/FuelStation')") -- Load lua files
   veh:queueLuaCommand("extensions.loadModulesInDirectory('lua/vehicle/extensions/FuelStation')")
+  veh:queueLuaCommand("fuelStation.getFuelType()")
+end
+
+local function setFuelType(t)
+  fuelType = t
 end
 
 local function onUpdate()
@@ -82,7 +91,7 @@ local function onUpdate()
     debugDrawer:drawCylinder(stations[map][k][1]:toPoint3F(), stations[map][k][2]:toPoint3F(), 1, color)
     for i = 0, be:getObjectCount() -1 do -- For each vehicle
       local veh = be:getObject(i) --  Get vehicle
-      if IsEntityInsideArea(veh:getPosition(), stations[map][k][1]) then
+      if IsEntityInsideArea(veh:getPosition(), stations[map][k][1]) and stations[map][k][3] == fuelType then
         -- we are inside one of the filling areas of the map
         --ui_message("Press E To Refuel")
         atStation = true
@@ -98,6 +107,7 @@ end
 
 M.onUpdate = onUpdate
 M.addFuel = addFuel
+M.setFuelType = setFuelType
 M.onVehicleSwitched       = onVehicleSwitched
 M.onVehicleSpawned        = onVehicleSpawned
 

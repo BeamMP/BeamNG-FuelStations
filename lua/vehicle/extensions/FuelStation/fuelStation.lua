@@ -48,6 +48,15 @@ local function addFuel()
 	end
 end
 
+local function getFuelType()
+	if energyStorage.getStorage('mainTankR') ~= nil or energyStorage.getStorage('mainTankL') ~= nil or energyStorage.getStorage('mainTank') ~= nil then
+		obj:queueGameEngineLua("fuelStations.setFuelType(\'Gas\')")
+	elseif energyStorage.getStorage('mainBattery') ~= nil then
+		obj:queueGameEngineLua("fuelStations.setFuelType(\'EV\')") 
+	end
+end
+
 M.addFuel = addFuel
+M.getFuelType = getFuelType
 
 return M
