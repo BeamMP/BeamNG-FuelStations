@@ -206,19 +206,21 @@ local function onUpdate()
     debugDrawer:drawTextAdvanced(be:getObject(0):getPosition(), String(" "..tostring(be:getObject(0):getPosition())), ColorF(194/255, 55/255, 55/255, 255/255), true, false, ColorI(0,0,0,127))
   end
   map = getMissionFilename()
-  for k = 1, #stations[map] do
-    --print("Using Map: "..tostring(stations[map][k][3]))
-    local color = 0
-    if stations[map][k][3] == "EV" then
-      color = ColorF(0.1,0.9,0.1,0.5)
-    elseif stations[map][k][3] == "Gas/EV" then
-      color = ColorF(0.1,0.8,1.0,0.5)
-    else
-      color = ColorF(0.9,0.1,0.1,0.5)
-    end
-    debugDrawer:drawCylinder(stations[map][k][1]:toPoint3F(), stations[map][k][2]:toPoint3F(), 1, color)
-    for i = 0, be:getObjectCount() -1 do -- For each vehicle
-      local veh = be:getObject(i) --  Get vehicle
+  if string.match(map, "info.json") or string.match(map, "level.json") then
+    for k = 1, #stations[map] do
+      --print("Using Map: "..tostring(stations[map][k][3]))
+      local color = 0
+      if stations[map][k][3] == "EV" then
+        color = ColorF(0.1,0.9,0.1,0.5)
+      elseif stations[map][k][3] == "Gas/EV" then
+        color = ColorF(0.1,0.8,1.0,0.5)
+      else
+        color = ColorF(0.9,0.1,0.1,0.5)
+      end
+      debugDrawer:drawCylinder(stations[map][k][1]:toPoint3F(), stations[map][k][2]:toPoint3F(), 1, color)
+    --for i = 0, be:getObjectCount() -1 do -- For each vehicle
+      --local veh = be:getObject(i) --  Get vehicle
+      local veh = be:getObjectByID(cVeh)
       if IsEntityInsideArea(veh:getPosition(), stations[map][k][1]) then
         if stations[map][k][3] == "Gas/EV" or stations[map][k][3] == fuelType then
           -- we are inside one of the filling areas of the map
@@ -228,10 +230,11 @@ local function onUpdate()
           break
         end
       end
+    --end
     end
-  end
-  if not atStation then -- We are not in a spot for filling then we should force the UI to be hidden
-    be:executeJS('fuelUIShowHide("false")')
+    if not atStation then -- We are not in a spot for filling then we should force the UI to be hidden
+      be:executeJS('fuelUIShowHide("false")')
+    end
   end
 end
 
