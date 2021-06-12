@@ -39,11 +39,11 @@ local function getFuelType()
 	end
 	for _, storage in pairs(energyStorage.getStorages()) do
 		if storage.type == "fuelTank" then
-			log('I',"[Fuel Stations]", "found gas tank")
+			--log('I',"[Fuel Stations]", "found gas tank")
 			obj:queueGameEngineLua("if fuelStations then fuelStations.setFuelType("..obj:getID()..",'gas') end")
 			return
 		elseif storage.type == "electricBattery" then
-			log('I',"[Fuel Stations]", "found ev battery")
+			--log('I',"[Fuel Stations]", "found ev battery")
 			obj:queueGameEngineLua("if fuelStations then fuelStations.setFuelType("..obj:getID()..",'ev') end") 
 			return
 		end
