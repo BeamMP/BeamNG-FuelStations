@@ -19,12 +19,14 @@ local function loadMapStations(infopath)
 
 	stations = jsonReadFile(maproot .. "fuelstations.json")
 
+	log('I','[FuelStations]', "Refuel Points Loaded")
+
 	return stations ~= nil
 end
 
 local function onClientPostStartMission(infopath)
 	if loadMapStations(infopath) then
-		log('I','[FuelStations]', "Loaded stations")
+		log('I','[FuelStations]', "Stations loaded.")
 	else
 		log('I','[FuelStations]', "Could not load stations for map "..infopath)
 	end
@@ -54,7 +56,10 @@ local function onUpdate()
 		debugDrawer:drawCylinder(pos, topPos:toPoint3F(), 0.05, ColorF(1,0.2,0.2,0.7)) --bottom, top, radius, color
 	end
 
-	if not stations then return end
+	if not stations then 
+		loadMapStations()
+		return 
+	end
 
 	local activeVeh = be:getPlayerVehicle(0)
 	local activeFuelType = "any"
@@ -101,7 +106,13 @@ local function onUpdate()
 	end
 
 	if canRefill then
-		ui_message("Hold E To Refuel", 1, "fuelStations")
+		if activeFuelType == "gas" then
+			ui_message("Hold E To Refuel", 1, "fuelStations")
+		elseif activeFuelType == "ev" then
+			ui_message("Hold E To Recharge", 1, "fuelStations")
+		else
+			ui_message("Hold E To Refuel/Recharge", 1, "fuelStations")
+		end
 		if ePressed then
 			addFuel()
 		end
