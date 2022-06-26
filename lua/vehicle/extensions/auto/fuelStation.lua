@@ -24,8 +24,8 @@ local function addFuel()
 
 	if storageType and storageType == "fuelTank" and electrics.values.engineRunning == 1 then
 		if math.random() < 0.002 then
-			beamstate.breakAllBreakgroups()
 			fire.explodeVehicle()
+			
 			ui_message("Turn off your engine!", 5, "fuelStationsBoom")
 		end
 	end
