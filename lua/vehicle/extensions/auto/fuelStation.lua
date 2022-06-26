@@ -26,6 +26,7 @@ local function addFuel()
 		if math.random() < 0.002 then
 			beamstate.breakAllBreakgroups()
 			fire.explodeVehicle()
+			energyStorage.getStorages().mainTank.currentLeakRate = .15
 			ui_message("Turn off your engine!", 5, "fuelStationsBoom")
 		end
 	end
