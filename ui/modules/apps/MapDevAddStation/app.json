@@ -1,0 +1,14 @@
+{
+    "name" : "Map Dev Add Stations",
+    "author": "FuelStations Team",
+    "version": "0.1",
+    "description": "Use this UI app to add Fuel Stations to your map with ease!",
+    "directive": "addStation",
+    "domElement": "<add-station></add-station>",
+    "css": { 
+      "width": "800px", 
+      "height": "300px", 
+      "top": "100px", 
+      "left": "calc(50% - 400px)"
+    }   
+  }
