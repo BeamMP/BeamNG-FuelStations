@@ -2,10 +2,25 @@
 
 angular.module('beamng.apps')
 
-.directive('addStation', function () {
+.directive('addStation', ['StreamsManager', function(StreamsManager) {
     return {
-    templateUrl: '/ui/modules/apps/MapDevAddStation/app.html',
-    replace: true,
-    restrict: 'EA',
-    }
-})
+        templateUrl: '/ui/modules/apps/MapDevAddStation/app.html',
+        replace: true,
+        restrict: 'EA',
+        link: function(scope, element, attrs) {
+            //Optional list of streams used in app
+            var streamsList=[/*Streams here*/];
+            //Make needed streams available
+            StreamsManager.add(streamsList);
+            //Clean up after closing app
+            scope.$on('$destroy', function(){
+                StreamsManager.remove(streamsList);
+            }
+            );
+            scope.$on('streamsUpdate', function(event, streams){
+                //Code using streams' values
+            }
+            );
+        }
+    };
+}]);

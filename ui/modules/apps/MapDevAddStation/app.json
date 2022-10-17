@@ -9,6 +9,7 @@
       "width": "800px", 
       "height": "300px", 
       "top": "100px", 
-      "left": "calc(50% - 400px)"
-    }   
+      "left": "100px"
+    },
+    "preserveAspectRatio": true
   }
