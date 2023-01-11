@@ -1,13 +1,17 @@
-//MapDevAddStation has been started by Sky777, part of the FuelStations Team, adding Fuel Stations to BeamNG maps!.
+//MapDevAddStation has been started by Sky777, part of the FuelStations Team, 
+//making it easy to add Fuel Stations to BeamNG maps!
 
 angular.module('beamng.apps')
 
 .directive('addStation', ['StreamsManager', function(StreamsManager) {
     return {
-        templateUrl: '/ui/modules/apps/MapDevAddStation/app.html',
+        template:
+        '<object style="width:100%; height:100%;" type="image/svg+xml" data="/ui/modules/apps/MapDevAddStation/tool.svg"></object>',
         replace: true,
         restrict: 'EA',
+        scope: true,
         link: function(scope, element, attrs) {
+
             //Optional list of streams used in app
             var streamsList=[/*Streams here*/];
             //Make needed streams available
