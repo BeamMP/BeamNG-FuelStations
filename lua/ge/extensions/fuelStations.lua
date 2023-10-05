@@ -8,8 +8,8 @@ local fuelTypeMap = {}
 local ePressed = false
 local debug = false
 
-local inactiveColorMap = { gas = ColorF(1,1,0,0.3), ev = ColorF(0,1,0,0.3), any = ColorF(0,0,1,0.3) }
-local activeColorMap = { gas = ColorF(1,1,0,0.5), ev = ColorF(0,1,0,0.5), any = ColorF(0,0,1,0.5) }
+local inactiveColorMap = { gas = ColorF(1,0,0,0.3), ev = ColorF(0,1,0,0.3), any = ColorF(0,0,1,0.3) }
+local activeColorMap = { gas = ColorF(1,0,0,0.5), ev = ColorF(0,1,0,0.5), any = ColorF(0,0,1,0.5) }
 
 local function loadMapStations(infopath)
 	infopath = infopath or getMissionFilename()
